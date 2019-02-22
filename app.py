@@ -31,17 +31,17 @@ def makeWebhookResult(req):
     print req.get("result")
     if req.get("result").get("metadata").get("intentName") == "direction":
         #http://192.168.1.10/forward
-        direction = req.get("result").get("parameters").get("direction")
+        direction = req.get("result").get("parameters").get("directionentity")
         print direction
         steps = req.get("result").get("parameters").get("number")
         print steps
         #http://192.168.1.11/1?a=0&b=0
-        currenturl = 'http://192.168.1.11/direction?d=' + str(direction) + '&s=' + str(steps)
+        currenturl = 'http://192.168.1.10/direction?d=' + str(direction) + '&s=' + str(steps)
         print currenturl
         response = urllib2.urlopen(currenturl)
         data = response.read()
         response.close()
-        speech = "Moving " + str(direction) + " for " + str(steps)
+        speech = "Moving " + str(direction) + " for " + str(steps) + " steps"
 
         print("Response:")
         print(speech)
